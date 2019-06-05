@@ -11,4 +11,5 @@ COPY . /app
 RUN npm install "https://github.com/rfilmyer/sheriffbot-discord.git"
 
 # Run app.py when the container launches
-CMD ["node", "app.js"]
+# I did something bad here and I should fix it.
+CMD ["node", ".\node_modules\sheriffbot-discord\app.js"]

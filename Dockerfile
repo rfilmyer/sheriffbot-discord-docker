@@ -1,15 +1,12 @@
 # Use an official Node runtime as a parent image
-FROM node:12
+FROM node:12-alpine
 
-# Set the working directory to /app
+RUN apk add --no-cache git
+
+RUN git clone "https://github.com/rfilmyer/sheriffbot-discord.git" /app
+
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+RUN npm install
 
-# Install any needed packages specified in requirements.txt
-RUN npm install "https://github.com/rfilmyer/sheriffbot-discord.git"
-
-# Run app.py when the container launches
-# I did something bad here and I should fix it.
-CMD ["node", ".\node_modules\sheriffbot-discord\app.js"]
+CMD ["node", "./app.js"]
